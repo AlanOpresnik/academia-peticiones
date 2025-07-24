@@ -13,7 +13,7 @@ export default function ProductCard({ prod }) {
           <div className="mt-4 ">
             <div>
               <h3 className="font-semibold text-gray-700">
-                <a href={prod.title}>
+                <a href={`/productos/${prod.id}`} className="relative">
                   <span aria-hidden="true" className="absolute inset-0" />
                   {prod.title}
                 </a>
