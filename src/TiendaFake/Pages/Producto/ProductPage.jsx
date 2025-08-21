@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Star } from "lucide-react";
 import { useParams } from "react-router";
+import { ProductContext } from "../../Hooks/Context/ProductContext";
 
 export default function ProductPage() {
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true); // -> cargando producto...
+  
+    const { mensaje } = useContext(ProductContext);
+    console.log(mensaje)
 
   const { id } = useParams(); // Extrae el ID del producto de la URL
 
