@@ -17,7 +17,6 @@ export const FavoritesProvider = ({ children }) => {
   };
 
   useEffect(() => {
-
     const almacenado = localStorage.getItem("favorites")
     if (almacenado) {
       setFavorites(JSON.parse(almacenado));

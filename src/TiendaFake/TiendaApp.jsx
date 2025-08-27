@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import Banner from "./Banner/Banner";
-import { useFavoritesContext } from "./Hooks/Context/FavoritesContext";
 import ProductosDestacadosSection from "./ProductosDestacadosSection/ProductosDestacadosSection";
 import Navbar from "./components/Navbar/Navbar";
+import { useCartContext } from "./Hooks/Context/CartContext";
 
 const TiendaApp = () => {
 //  const [walterSaludo, setWalterSaludo] = useState("");
-  const { mensaje } = useFavoritesContext();
-  console.log(mensaje);
+  //const { mensajeCarrito } = useCartContext();
+  //console.log(mensajeCarrito);
 
   //useEffect(() => {
     // localStorage.setItem("Saludo", "Hola walter soy el local Storage");

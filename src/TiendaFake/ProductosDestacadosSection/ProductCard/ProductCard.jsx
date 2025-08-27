@@ -1,8 +1,10 @@
 import { Heart } from "lucide-react";
 import { useFavoritesContext } from "../../Hooks/Context/FavoritesContext";
+import { useCartContext } from "../../Hooks/Context/CartContext";
 
 export default function ProductCard({ prod }) {
   const { addFavorite, favorites } = useFavoritesContext();
+  const { addCart } = useCartContext();
 
   const isFavorite = favorites.some((fav) => fav.id === prod.id);
 
@@ -33,7 +35,10 @@ export default function ProductCard({ prod }) {
           </a>
           <div className="flex items-center gap-4 mt-4">
             <div className="">
-              <button className="p-3 bg-indigo-600 text-white rounded-xl cursor-pointer">
+              <button
+                onClick={() => addCart(prod)}
+                className="p-3 bg-indigo-600 text-white rounded-xl cursor-pointer"
+              >
                 Agregar al carrito
               </button>
             </div>
@@ -41,9 +46,7 @@ export default function ProductCard({ prod }) {
               <button
                 onClick={() => addFavorite(prod)}
                 className={`p-2 rounded-full cursor-pointer transition-colors 
-    ${
-      isFavorite ? "bg-red-500 text-white" : "bg-gray-400 text-black"
-    }`}
+    ${isFavorite ? "bg-red-500 text-white" : "bg-gray-400 text-black"}`}
               >
                 <Heart />
               </button>
