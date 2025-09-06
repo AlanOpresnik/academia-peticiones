@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Trash2, Plus, Minus, ShoppingBag } from "lucide-react"
 import { useCartContext } from "../../../../Hooks/Context/CartContext"
 import ProductCard from "./ProductCard";
+import { Link } from "react-router";
 
 
 
@@ -79,12 +80,13 @@ const CartSection = () => {
                 </div>
               </div>
 
-              <button
+              <Link
+              to={'/cart/pre-order'}
                 disabled={cart.length === 0}
                 className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
               >
                 Proceder al pago
-              </button>
+              </Link>
 
               <button className="w-full mt-3 border border-gray-300 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-50 transition-colors">
                 Continuar comprando

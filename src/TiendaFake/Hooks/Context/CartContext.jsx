@@ -6,6 +6,7 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
+  const [client, setClient] = useState({});
 
   const addCart = (prod) => {
     setCart([...cart, prod]);
@@ -17,6 +18,7 @@ export const CartProvider = ({ children }) => {
     setCart(nuevoCarrito);
     toast.success("Producto eliminado");
   };
+
 
   const getTotal = () => {
     if (cart.length > 0) {
@@ -33,8 +35,12 @@ export const CartProvider = ({ children }) => {
     getTotal();
   }, [cart]);
 
+
+
   return (
-    <CartContext.Provider value={{ addCart, cart, removeProductCart, total }}>
+    <CartContext.Provider
+      value={{ addCart, cart, removeProductCart, total, setClient, client }}
+    >
       {children}
     </CartContext.Provider>
   );

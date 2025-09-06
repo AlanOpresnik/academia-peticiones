@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { Star } from "lucide-react";
 import { useParams } from "react-router";
 import { ProductContext } from "../../Hooks/Context/ProductContext";
+import { useCartContext } from "../../Hooks/Context/CartContext";
+import Navbar from '../../components/Navbar/Navbar'
 
 export default function ProductPage() {
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true); // -> cargando producto...
-  
+  const {addCart} = useCartContext();
     const { mensaje } = useContext(ProductContext);
     console.log(mensaje)
 
@@ -34,9 +36,10 @@ export default function ProductPage() {
     obtenerProducto();
   }, []);
 
-  
 
   return (
+    <>
+    <Navbar/>
     <div className="container mx-auto px-6 py-12">
       {loading ? (
         <div className="text-center">
@@ -50,7 +53,7 @@ export default function ProductPage() {
               src={product.image}
               alt={product.title}
               className="w-full h-[600px] rounded-2xl shadow-lg object-contain"
-            />
+              />
           </div>
 
           {/* Detalles del producto */}
@@ -61,12 +64,12 @@ export default function ProductPage() {
                 .fill(0)
                 .map((_, i) => (
                   <Star
-                    key={i}
-                    className={`w-6 h-6 ${
-                      i < 4
-                        ? "fill-yellow-400 text-yellow-400"
-                        : "text-gray-300"
-                    }`}
+                  key={i}
+                  className={`w-6 h-6 ${
+                    i < 4
+                    ? "fill-yellow-400 text-yellow-400"
+                    : "text-gray-300"
+                  }`}
                   />
                 ))}
               <span className="text-gray-600">(123 reseñas)</span>
@@ -77,12 +80,13 @@ export default function ProductPage() {
                 ${product.price}
               </span>
             </div>
-            <button className="w-full md:w-auto bg-indigo-800 text-white rounded-full px-8 py-4 text-lg cursor-pointer">
+            <button onClick={() => addCart(product)} className="w-full md:w-auto bg-indigo-800 text-white rounded-full px-8 py-4 text-lg cursor-pointer">
               Añadir al carrito
             </button>
           </div>
         </div>
       )}
     </div>
+      </>
   );
 }

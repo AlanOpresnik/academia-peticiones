@@ -10,6 +10,7 @@ import { FavoritesProvider } from "./TiendaFake/Hooks/Context/FavoritesContext";
 import { Toaster } from "react-hot-toast";
 import CartPage from "./TiendaFake/Pages/Cart/CartPage";
 import { CartProvider } from "./TiendaFake/Hooks/Context/CartContext";
+import PreOrderPage from "./TiendaFake/Pages/Cart/PreOrderPage/PreOrderPage";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -26,8 +27,14 @@ createRoot(document.getElementById("root")).render(
               </Route>
 
               <Route path="/cart" element={<CartPage />} />
+              <Route path="/cart/pre-order" element={<PreOrderPage/>}/>
+              
+              <Route path="/cart/order/:status" element={'estado'} />
 
               <Route path="/admin/products" element={<AdminPage />} />
+
+              
+
             </Routes>
           </BrowserRouter>
         </CartProvider>
