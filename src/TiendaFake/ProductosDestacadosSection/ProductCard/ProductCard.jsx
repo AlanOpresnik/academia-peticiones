@@ -1,7 +1,7 @@
 import { Heart } from "lucide-react";
 import { useFavoritesContext } from "../../Hooks/Context/FavoritesContext";
 import { useCartContext } from "../../Hooks/Context/CartContext";
-
+import { Link } from "react-router";
 export default function ProductCard({ prod }) {
   const { addFavorite, favorites } = useFavoritesContext();
   const { addCart } = useCartContext();
@@ -12,7 +12,7 @@ export default function ProductCard({ prod }) {
     <div className="bg-white border border-gray-200 rounded-2xl">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-12 lg:max-w-7xl lg:px-8">
         <div className="group relative">
-          <a href={`/productos/${prod.id}`} className="relative">
+          <Link  to={`/productos/${prod.id}`} className="relative">
             <img
               alt={prod.title}
               src={prod.image}
@@ -32,7 +32,7 @@ export default function ProductCard({ prod }) {
                 ${prod.price}
               </p>
             </div>
-          </a>
+          </Link>
           <div className="flex items-center gap-4 mt-4">
             <div className="">
               <button

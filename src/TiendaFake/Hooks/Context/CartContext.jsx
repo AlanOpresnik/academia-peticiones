@@ -4,7 +4,14 @@ import toast from "react-hot-toast";
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+
+
+
   const [total, setTotal] = useState(0);
   const [client, setClient] = useState({});
 
@@ -19,6 +26,10 @@ export const CartProvider = ({ children }) => {
     toast.success("Producto eliminado");
   };
 
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
+  
 
   const getTotal = () => {
     if (cart.length > 0) {
@@ -34,8 +45,6 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     getTotal();
   }, [cart]);
-
-
 
   return (
     <CartContext.Provider

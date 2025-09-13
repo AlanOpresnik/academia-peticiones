@@ -21,7 +21,6 @@ export const FavoritesProvider = ({ children }) => {
     if (almacenado) {
       setFavorites(JSON.parse(almacenado));
     }
-
   }, []);
 
 

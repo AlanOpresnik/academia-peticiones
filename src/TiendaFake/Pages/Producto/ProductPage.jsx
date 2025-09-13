@@ -8,9 +8,11 @@ import Navbar from '../../components/Navbar/Navbar'
 export default function ProductPage() {
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true); // -> cargando producto...
-  const {addCart} = useCartContext();
+  const {addCart, cart} = useCartContext();
     const { mensaje } = useContext(ProductContext);
     console.log(mensaje)
+
+    console.log(cart)
 
   const { id } = useParams(); // Extrae el ID del producto de la URL
 

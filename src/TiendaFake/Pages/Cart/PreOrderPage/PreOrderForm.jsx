@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { useCartContext } from "../../../Hooks/Context/CartContext";
+import toast from "react-hot-toast";
 
 export default function PreOrderForm() {
-  const { setClient } = useCartContext();
+  const { setClient, cart } = useCartContext();
 
   const [form, setForm] = useState({
     nombre: "",
     email: "",
     direccion: "",
     tel: "",
+    cart
   });
   const [IsDisabled , setIsDisabled] = useState(true)
-
+  const [exito, setExito] = useState(false)
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({
@@ -33,6 +35,10 @@ export default function PreOrderForm() {
     e.preventDefault();
     console.log(form)
     setClient(form);
+    setExito(true)
+    if(exito) {
+      toast.success('Muchas gracias por tu compra te esta redirigiendo a la pagina de facturaion....')
+    }
   };
 
   return (
